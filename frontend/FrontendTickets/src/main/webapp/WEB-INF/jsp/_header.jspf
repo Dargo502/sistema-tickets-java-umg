@@ -1,0 +1,64 @@
+<%@ page pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
+<!DOCTYPE html>
+<html lang="es" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tickets - UMG</title>
+    <!-- CONFIGURACIÓN DE RUTAS ABSOLUTAS PROFESIONALES (CON BARRA DIAGONAL INICIAL) -->
+    <link rel="icon" type="image/png" href="${pageContext.request.contextPath}/css/logo-umg.png">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/estilos.css">
+    <!-- Aplica el tema guardado ANTES de pintar la página (evita el parpadeo claro/oscuro al navegar) -->
+    <script>try { if (localStorage.getItem("temaSeleccionado") === "dark") { document.documentElement.setAttribute("data-theme", "dark"); } } catch (e) { }</script>
+</head>
+<body class="d-flex flex-column h-100">
+    <%@ include file="_iconos.jspf" %>
+
+    <!-- Barra de navegación corporativa UMG -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm mb-4 py-3">
+        <div class="container-fluid px-4">
+            <!-- Logo local de la UMG enlazado de forma absoluta -->
+            <a class="navbar-brand fw-bold text-white d-flex align-items-center gap-2" href="${pageContext.request.contextPath}/inicio">
+                <img src="${pageContext.request.contextPath}/css/logo-umg.png" alt="Logo UMG" style="height: 35px; width: auto; object-fit: contain;">
+                <span style="font-size: 1.05rem;">Sistema de Tickets - Programación II</span>
+            </a>
+            
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Menú superior con rutas relativas al contexto del servidor Java -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto border-start border-secondary" id="mainMenuNav">
+                    <li class="nav-item border-end border-secondary">
+                        <a class="nav-link px-3" id="nav-inicio" href="${pageContext.request.contextPath}/inicio">Tablero</a>
+                    </li>
+                    <li class="nav-item border-end border-secondary">
+                        <a class="nav-link px-3" id="nav-historial" href="${pageContext.request.contextPath}/historial">Reportes</a>
+                    </li>
+                    <li class="nav-item border-end border-secondary">
+                        <a class="nav-link px-3" id="nav-notificaciones" href="${pageContext.request.contextPath}/notificaciones">Notificaciones</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link px-3" id="nav-config" href="${pageContext.request.contextPath}/config">Configuración</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor general fluido -->
+    <main class="flex-shrink-0">
+        <div class="container-fluid px-4 pb-5">
+
+            <%-- Mensaje de resultado (éxito o error) que dejan los controladores tras guardar, eliminar, etc. --%>
+            <c:if test="${not empty flashMensaje}">
+                <div class="alert ${flashTipo eq 'ok' ? 'alert-success' : 'alert-danger'} alert-dismissible fade show d-flex align-items-center gap-2" role="alert">
+                    <svg class="icono"><use href="${flashTipo eq 'ok' ? '#i-check-circle' : '#i-alert'}"/></svg>
+                    <span><c:out value="${flashMensaje}"/></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+                </div>
+            </c:if>

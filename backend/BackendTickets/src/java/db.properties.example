@@ -1,0 +1,14 @@
+# ============================================================
+# Conexión del backend a SQL Server
+# 1) Copie este archivo como "db.properties" en esta misma carpeta (src/java/).
+# 2) Ponga la contraseña real. db.properties está en .gitignore: NUNCA se sube a GitHub.
+# ============================================================
+
+# Todo en una sola máquina (examen final):
+db.url=jdbc:sqlserver://localhost:1433;databaseName=DB_ControlTickets;encrypt=true;trustServerCertificate=true;
+
+# Presentación en red (servidor de BD en otra PC): cambie localhost por la IP de esa PC.
+# db.url=jdbc:sqlserver://192.168.1.10:1433;databaseName=DB_ControlTickets;encrypt=true;trustServerCertificate=true;
+
+db.user=tickets_app
+db.password=Cambiar#Esta2026

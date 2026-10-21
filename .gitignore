@@ -1,0 +1,31 @@
+# Salidas de compilación
+build/
+dist/
+target/
+*.class
+*.war
+*.log
+
+# NetBeans / IDEs (configuración local de cada integrante)
+nbproject/private/
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos con secretos (nunca subir contraseñas reales)
+*.env
+secrets.properties
+
+
+*.zip
+docs/GUIA_ENTREGA_FINAL.md
+
+# Credenciales del backend (se usa db.properties.example como plantilla)
+db.properties

@@ -1,0 +1,16 @@
+<%@ page pageEncoding="UTF-8" %>
+        </div> <!-- Cierre del container-fluid de contenido -->
+    </main>
+
+    <!-- Pie de página responsivo -->
+    <footer class="footer mt-auto py-3 bg-white text-center border-top">
+        <div class="container-fluid px-4 text-muted">
+            <small>&copy; 2026 - Universidad Mariano Gálvez de Guatemala | Ingeniería en Sistemas</small>
+        </div>
+    </footer>
+
+    <!-- Rutas absolutas del servidor para los scripts locales -->
+    <script src="${pageContext.request.contextPath}/js/bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/js/app.js"></script>
+</body>
+</html>

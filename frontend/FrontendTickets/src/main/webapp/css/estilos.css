@@ -1,0 +1,166 @@
+/* ========================================================
+   VARIABLES DE CONTROL DE COLOR (Estilo Jira / UMG)
+   ======================================================== */
+:root {
+    /* Modo Claro por Defecto */
+    --bg-global: #f4f5f7;
+    --bg-tarjeta: #ffffff;
+    --bg-columna: #eaeef3;
+    --texto-principal: #172b4d;
+    --texto-secundario: #5e6c84;
+    --borde-tarjeta: #dfe1e6;
+    --sombra-premium: rgba(9, 30, 66, 0.08);
+}
+
+[data-theme="dark"] {
+    /* Modo Oscuro Premium */
+    --bg-global: #1d2125;
+    --bg-tarjeta: #2c333a;
+    --bg-columna: #161a1d;
+    --texto-principal: #e3e6e8;
+    --texto-secundario: #9fadb6;
+    --borde-tarjeta: #333c43;
+    --sombra-premium: rgba(0, 0, 0, 0.3);
+}
+
+/* ========================================================
+   ESTRUCTURA DEL TABLERO KANBAN EN HORIZONTAL
+   ======================================================== */
+.tablero { 
+    display: grid !important; 
+    grid-template-columns: 1fr !important; 
+    gap: 1.5rem !important; 
+    margin-top: 1rem;
+    width: 100% !important;
+}
+
+@media (min-width: 850px) {
+    .tablero { 
+        grid-template-columns: repeat(3, 1fr) !important; 
+    }
+}
+
+.columna { 
+    background-color: var(--bg-columna) !important; 
+    border: 1px solid var(--borde-tarjeta) !important;
+    border-radius: 6px !important; 
+    padding: 0.8rem !important; 
+    display: flex !important;
+    flex-direction: column !important;
+    box-shadow: 0 1px 3px var(--sombra-premium) !important;
+}
+
+.columna h2 { 
+    margin: .2rem 0 .8rem !important; 
+    display: flex !important; 
+    justify-content: space-between !important; 
+    align-items: center !important; 
+    font-size: 0.95rem !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.5px !important;
+    color: var(--texto-secundario) !important;
+    padding: 0 0.4rem !important;
+    font-weight: 700 !important;
+}
+
+.contador { 
+    background-color: var(--borde-tarjeta) !important; 
+    color: var(--texto-principal) !important; 
+    border-radius: 999px !important; 
+    padding: 0.1rem .6rem !important; 
+    font-size: .8rem !important; 
+    font-weight: 600 !important;
+}
+
+/* ========================================================
+   APLICACIÓN MÁGICA DE COLORES SOBRE LOS ELEMENTOS
+   ======================================================== */
+body {
+    background-color: var(--bg-global) !important;
+    color: var(--texto-principal) !important;
+    transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* Blindaje para que el botón de Crear Ticket mantenga su texto e iconos blancos visibles */
+.btn-primary, button.btn-primary, .btn-primary * {
+    color: #ffffff !important;
+    background-color: #0052cc !important;
+    border-color: #0052cc !important;
+}
+.btn-primary:hover {
+    background-color: #0065ff !important;
+}
+
+/* Tarjetas individuales de los tickets */
+.tarjeta { 
+    background-color: var(--bg-tarjeta) !important; 
+    border-radius: 4px !important; 
+    border: 1px solid var(--borde-tarjeta) !important;
+    border-top: 4px solid var(--borde-tarjeta) !important; 
+    padding: .8rem !important; 
+    margin-bottom: .6rem !important; 
+    box-shadow: 0 1px 2px var(--sombra-premium) !important; 
+}
+
+.tarjeta.prio-alta { border-top-color: #b3261e !important; }
+.tarjeta.prio-media { border-top-color: #e0a100 !important; }
+.tarjeta.prio-baja { border-top-color: #1b7f4b !important; }
+
+.titulo, h1, h2, h3, h5, th {
+    color: var(--texto-principal) !important;
+}
+
+.meta, .text-muted, p, nav span, td {
+    color: var(--texto-secundario) !important;
+}
+
+/* Modales e inputs */
+.modal-content {
+    background-color: var(--bg-tarjeta) !important;
+    color: var(--texto-principal) !important;
+    border: 1px solid var(--borde-tarjeta) !important;
+}
+
+input, select, textarea {
+    background-color: var(--bg-global) !important;
+    color: var(--texto-principal) !important;
+    border: 1px solid var(--borde-tarjeta) !important;
+}
+
+.btn-jira-action {
+    background: var(--bg-tarjeta) !important;
+    border: 1px solid var(--borde-tarjeta) !important;
+    color: var(--texto-principal) !important;
+    padding: 6px 12px;
+    border-radius: 3px;
+    font-size: 14px;
+    cursor: pointer;
+}
+.btn-jira-action:hover {
+    background-color: var(--bg-global) !important;
+}
+
+/* ========================================================
+   ICONOS VECTORIALES (sprite SVG local en _iconos.jspf)
+   Heredan el color del texto: funcionan en modo claro y oscuro
+   ======================================================== */
+.icono {
+    width: 1.25em; height: 1.25em;
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round;
+    vertical-align: -0.22em; flex-shrink: 0;
+}
+.icono-lg { width: 1.7rem; height: 1.7rem; }
+.icono-xl { width: 2.6rem; height: 2.6rem; }
+.icono-input {            /* lupa dentro de un input */
+    position: absolute; left: .7rem; top: 50%; transform: translateY(-50%);
+    color: var(--texto-secundario); pointer-events: none;
+}
+/* Modo oscuro: se muestra el sol (para volver a claro); en modo claro, la luna */
+.i-tema-sol { display: none; }
+[data-theme="dark"] .i-tema-luna { display: none; }
+[data-theme="dark"] .i-tema-sol  { display: inline-block; }
+/* Pantalla completa: maximizar <-> minimizar */
+.i-fs-salir { display: none; }
+:fullscreen .i-fs-entrar { display: none; }
+:fullscreen .i-fs-salir  { display: inline-block; }

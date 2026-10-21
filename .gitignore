@@ -29,3 +29,4 @@ docs/GUIA_ENTREGA_FINAL.md
 
 # Credenciales del backend (se usa db.properties.example como plantilla)
 db.properties
+/backend/BackendTickets/nbproject/private/
